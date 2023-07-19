@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.productionProvider.mapper.ProductionMapper">
+    <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.Production">
+        <!--@mbg.generated-->
+        <!--@Table production-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="stock" jdbcType="VARCHAR" property="stock"/>
+        <result column="price" jdbcType="VARCHAR" property="price"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="remark1" jdbcType="VARCHAR" property="remark1"/>
+        <result column="remark2" jdbcType="VARCHAR" property="remark2"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, description, stock, price, `state`, remark1, remark2, `type`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from production
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByAnyFieldLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from production
+        <where>
+            <if test="id != null">
+                <if test="id != ''">
+                    id = #{id,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="name != null">
+                <if test="name != ''">
+                    `name` like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+                    and
+                </if>
+            </if>
+            <if test="description != null">
+                <if test="description != ''">
+                    description like CONCAT('%',#{description},'%')
+                    and
+                </if>
+            </if>
+            <if test="stock != null">
+                <if test="stock != ''">
+                    stock = #{stock,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="price != null">
+                <if test="price != ''">
+                    price = #{price,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="state != null">
+                <if test="state != ''">
+                    `state` = #{state,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="remark1 != null">
+                <if test="remark1 != ''">
+                    remark1 = #{remark1,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="remark2 != null">
+                <if test="remark2 != ''">
+                    remark2 = #{remark2,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            <if test="type != null">
+                <if test="type != ''">
+                    `type` = #{type,jdbcType=VARCHAR}
+                    and
+                </if>
+            </if>
+            '1' = '1'
+        </where>
+    </select>
+    <select id="selectByAnyField" parameterType="com.i2f.train.starter.model.Production" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from production
+        <where>
+            <if test="id != null">
+                <if test="id != ''">
+                    id = #{id,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="name != null">
+                <if test="name != ''">
+                    `name` = #{name,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="description != null">
+                <if test="description != ''">
+                    description = #{description,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="stock != null">
+                <if test="stock != ''">
+                    stock = #{stock,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="price != null">
+                <if test="price != ''">
+                    price = #{price,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="state != null">
+                <if test="state != ''">
+                    `state` = #{state,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="remark1 != null">
+                <if test="remark1 != ''">
+                    remark1 = #{remark1,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="remark2 != null">
+                <if test="remark2 != ''">
+                    remark2 = #{remark2,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            <if test="type != null">
+                <if test="type != ''">
+                    `type` = #{type,jdbcType=VARCHAR}
+                      and
+                </if>
+            </if>
+            '1' = '1'
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from production
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.i2f.train.starter.model.Production">
+        <!--@mbg.generated-->
+        insert into production (id, `name`, description,
+                                stock, price, `state`,
+                                remark1, remark2, `type`)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                #{stock,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+                #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.i2f.train.starter.model.Production">
+        <!--@mbg.generated-->
+        insert into production
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="state != null">
+                `state`,
+            </if>
+            <if test="remark1 != null">
+                remark1,
+            </if>
+            <if test="remark2 != null">
+                remark2,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                #{remark1,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                #{remark2,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.Production">
+        <!--@mbg.generated-->
+        update production
+        <set>
+            <if test="name != null">
+                <if test="name != ''">
+                    `name` = #{name,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="description != null">
+                <if test="description != ''">
+                    description = #{description,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="stock != null">
+                <if test="stock != ''">
+                    stock = #{stock,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="price != null">
+                <if test="price != ''">
+                    price = #{price,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="state != null">
+                <if test="state != ''">
+                    `state` = #{state,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="remark1 != null">
+                <if test="remark1 != ''">
+                    remark1 = #{remark1,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="remark2 != null">
+                <if test="remark2 != ''">
+                    remark2 = #{remark2,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="type != null">
+                <if test="type != ''">
+                    `type` = #{type,jdbcType=VARCHAR},
+                </if>
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.Production">
+        <!--@mbg.generated-->
+        update production
+        set `name`      = #{name,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR},
+            stock       = #{stock,jdbcType=VARCHAR},
+            price       = #{price,jdbcType=VARCHAR},
+            `state`     = #{state,jdbcType=VARCHAR},
+            remark1     = #{remark1,jdbcType=VARCHAR},
+            remark2     = #{remark2,jdbcType=VARCHAR},
+            `type`      = #{type,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.financeProvider.mapper.FinanceOrderMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.FinanceOrder">
+    <!--@mbg.generated-->
+    <!--@Table finance_order-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="finance_id" jdbcType="VARCHAR" property="financeId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, finance_id, user_id, create_time, confirm_time, money, `type`, `status`,amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from finance_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+<!--  查询订单-->
+    <select id="getOrderList" resultMap="BaseResultMap">
+        select * from finance_order where user_id = #{userId}
+      <if test="status != null and status != ''">
+        and status = #{status}
+      </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from finance_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.FinanceOrder">
+    <!--@mbg.generated-->
+    insert into finance_order (id, finance_id, user_id, 
+      create_time, confirm_time, money, 
+      `type`, `status`,amount)
+    values (#{id,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP}, #{money,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.FinanceOrder">
+    <!--@mbg.generated-->
+    insert into finance_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="financeId != null">
+        finance_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.FinanceOrder">
+    <!--@mbg.generated-->
+    update finance_order
+    <set>
+      <if test="financeId != null">
+        finance_id = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if> <if test="amount != null">
+      amount= #{amount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.FinanceOrder">
+    <!--@mbg.generated-->
+    update finance_order
+    set finance_id = #{financeId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      money = #{money,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+    amount = #{amount,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectOrderByStatus" resultMap="BaseResultMap">
+    select * from finance_order where status=#{param1} and type=#{param2}
+  </select>
+  <select id="selectSubscribeOrderAndNotConfirm" resultMap="BaseResultMap">
+    select * from finance_order where confirm_time is null and type = '1' and status = '2'
+  </select>
+  <select id="selectSaleOrderAndNotConfirm" resultMap="BaseResultMap">
+    select * from finance_order where user_id = #{userId} and finance_id = #{financeId} and confirm_time is null and type = '2' and status = '2'
+  </select>
+</mapper>

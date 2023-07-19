@@ -1,0 +1,11 @@
+server:
+  port: 8092
+file:
+  upload:
+    url: D:/files
+  download:
+    url: D:/files
+
+spring:
+  main:
+    allow-bean-definition-overriding: true

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.userProvider.mapper.UserFriendsMapper">
+    <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        <!--@Table user_friends-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="friend_name" jdbcType="VARCHAR" property="friendName"/>
+        <result column="account_id" jdbcType="VARCHAR" property="accountId"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="remark2" jdbcType="VARCHAR" property="remark2"/>
+        <result column="remark1" jdbcType="VARCHAR" property="remark1"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_id, friend_name, account_id, bank_name, remark2, remark1
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_friends
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByAnyField" parameterType="com.i2f.train.starter.model.UserFriends" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_friends
+        <where>
+            <trim suffixOverrides="and">
+                <if test="userId != null">
+                    <if test="userId != ''">
+                        user_id = #{userId,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+                <if test="friendName != null">
+                    <if test="friendName != ''">
+                        friend_name = #{friendName,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+                <if test="accountId != null">
+                    <if test="accountId != ''">
+                        account_id = #{accountId,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+                <if test="bankName != null">
+                    <if test="bankName != ''">
+                        bank_name = #{bankName,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+                <if test="remark2 != null">
+                    <if test="remark2 != ''">
+                        remark2 = #{remark2,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+                <if test="remark1 != null">
+                    <if test="remark1 != ''">
+                        remark1 = #{remark1,jdbcType=VARCHAR} and
+                    </if>
+                </if>
+            </trim>
+        </where>
+    </select>
+    <select id="selectByAnyFieldLike" parameterType="com.i2f.train.starter.model.UserFriends" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_friends
+        <where>
+            <trim prefix="(" suffix=")" suffixOverrides="or">
+                <if test="friendName != null">
+                    <if test="friendName != ''">
+                        friend_name like '%${friendName}%' or
+                    </if>
+                </if>
+                <if test="accountId != null">
+                    <if test="accountId != ''">
+                        account_id like '%${accountId}%' or
+                    </if>
+                </if>
+                <if test="bankName != null">
+                    <if test="bankName != ''">
+                        bank_name like '%${bankName}%' or
+                    </if>
+                </if>
+                <if test="remark2 != null">
+                    <if test="remark2 != ''">
+                        remark2 like '%${remark2}%' or
+                    </if>
+                </if>
+                <if test="remark1 != null">
+                    <if test="remark1 != ''">
+                        remark1 like '%${remark1}%' or
+                    </if>
+                </if>
+            </trim>
+            and user_id = #{userId,jdbcType=VARCHAR}
+        </where>
+    </select>
+    <delete id="deleteByUserId" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        delete
+        from user_friends
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByPrimaryKey" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        delete
+        from user_friends
+        where id = #{id,jdbcType=VARCHAR} and user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        insert into user_friends (id, user_id, friend_name,
+                                  account_id, bank_name, remark2,
+                                  remark1)
+        values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{friendName,jdbcType=VARCHAR},
+                #{accountId,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR},
+                #{remark1,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        insert into user_friends
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="friendName != null">
+                friend_name,
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="bankName != null">
+                bank_name,
+            </if>
+            <if test="remark2 != null">
+                remark2,
+            </if>
+            <if test="remark1 != null">
+                remark1,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="friendName != null">
+                #{friendName,jdbcType=VARCHAR},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="bankName != null">
+                #{bankName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                #{remark2,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                #{remark1,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        update user_friends
+        <set>
+            <if test="userId != null">
+                <if test="userId != ''">
+                    user_id = #{userId,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="friendName != null">
+                <if test="friendName != ''">
+                    friend_name = #{friendName,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="accountId != null">
+                <if test="accountId != ''">
+                    account_id = #{accountId,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="bankName != null">
+                <if test="bankName != ''">
+                    bank_name = #{bankName,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="remark2 != null">
+                <if test="remark2 != ''">
+                    remark2 = #{remark2,jdbcType=VARCHAR},
+                </if>
+            </if>
+            <if test="remark1 != null">
+                <if test="remark1 != ''">
+                    remark1 = #{remark1,jdbcType=VARCHAR},
+                </if>
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR} and user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.UserFriends">
+        <!--@mbg.generated-->
+        update user_friends
+        set user_id     = #{userId,jdbcType=VARCHAR},
+            friend_name = #{friendName,jdbcType=VARCHAR},
+            account_id  = #{accountId,jdbcType=VARCHAR},
+            bank_name   = #{bankName,jdbcType=VARCHAR},
+            remark2     = #{remark2,jdbcType=VARCHAR},
+            remark1     = #{remark1,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR} and user_id = #{userId,jdbcType=VARCHAR}
+    </update>
+</mapper>

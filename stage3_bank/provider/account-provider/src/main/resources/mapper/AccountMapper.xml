@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.accountProvider.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.Account">
+    <!--@mbg.generated-->
+    <!--@Table account-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="personal_id" jdbcType="VARCHAR" property="personalId" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="daily_money" jdbcType="DECIMAL" property="dailyMoney" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `type`, pay_password, bank_name, username, personal_id, money, daily_money, create_time, 
+    mobile_phone, `state`, remark1, remark2, remark3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+    <select id="findByAccountId" resultMap="BaseResultMap">
+       select * from account where id=#{inAccountId}
+    </select>
+
+  <select id="selectByAnyField" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from account
+    where
+    <if test="id != null">
+      id = #{id,jdbcType=VARCHAR} and
+    </if>
+    <if test="type != null">
+      `type` = #{type,jdbcType=VARCHAR} and
+    </if>
+    <if test="payPassword != null">
+      pay_password = #{payPassword,jdbcType=VARCHAR} and
+    </if>
+    <if test="bankName != null">
+      bank_name = #{bankName,jdbcType=VARCHAR} and
+    </if>
+    <if test="username != null">
+      username = #{username,jdbcType=VARCHAR} and
+    </if>
+    <if test="personalId != null">
+      personal_id = #{personalId,jdbcType=VARCHAR} and
+    </if>
+    <if test="money != null">
+      money = #{money,jdbcType=VARCHAR} and
+    </if>
+    <if test="dailyMoney != null">
+      daily_money = #{dailyMoney,jdbcType=DECIMAL} and
+    </if>
+    <if test="createTime != null">
+      create_time = #{createTime,jdbcType=TIMESTAMP} and
+    </if>
+    <if test="mobilePhone != null">
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR} and
+    </if>
+    <if test="state != null">
+      `state` = #{state,jdbcType=VARCHAR} and
+    </if>
+    <if test="remark1 != null">
+      remark1 = #{remark1,jdbcType=VARCHAR} and
+    </if>
+    <if test="remark2 != null">
+      remark2 = #{remark2,jdbcType=VARCHAR} and
+    </if>
+    <if test="remark3 != null">
+      remark3 = #{remark3,jdbcType=VARCHAR} and
+    </if>
+    '1' = '1'
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from account
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.i2f.train.starter.model.Account">
+    <!--@mbg.generated-->
+    insert into account (id, `type`, pay_password, 
+      bank_name, username, personal_id, 
+      money, daily_money, create_time, 
+      mobile_phone, `state`)
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{personalId,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{dailyMoney,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{mobilePhone,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.Account">
+    <!--@mbg.generated-->
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="payPassword != null">
+        pay_password,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="personalId != null">
+        personal_id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="dailyMoney != null">
+        daily_money,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+      <if test="id != null">
+        id
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="personalId != null">
+        #{personalId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyMoney != null">
+        #{dailyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.Account">
+    <!--@mbg.generated-->
+    update account
+    <set>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="personalId != null">
+        personal_id = #{personalId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyMoney != null">
+        daily_money = #{dailyMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.Account">
+    <!--@mbg.generated-->
+    update account
+    set `type` = #{type,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      personal_id = #{personalId,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      daily_money = #{dailyMoney,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      `state` = #{state,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateMoney">
+     UPDATE user SET money=#{money} WHERE id=#{id}
+  </update>
+
+  <update id="upAccountPayPassword">
+        update account set pay_password=#{payPassword} where id = #{accountId}
+    </update>
+
+
+</mapper>

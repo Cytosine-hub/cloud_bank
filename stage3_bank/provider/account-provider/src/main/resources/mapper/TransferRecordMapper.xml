@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.accountProvider.mapper.TransferRecordMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.TransferRecord">
+    <!--@mbg.generated-->
+    <!--@Table transfer_record-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="in_account_id" jdbcType="VARCHAR" property="inAccountId" />
+    <result column="out_account_id" jdbcType="VARCHAR" property="outAccountId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="other_money" jdbcType="DECIMAL" property="otherMoney" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, uuid, in_account_id, out_account_id, `type`, money, create_time, remark, other_money,
+    remark1, remark2, remark3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from transfer_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from transfer_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.TransferRecord">
+    <!--@mbg.generated-->
+    insert into transfer_record (id, uuid, in_account_id, 
+      out_account_id, `type`, money, 
+      create_time, remark, other_money, 
+      remark1, remark2, remark3
+      )
+    values (#{id,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR}, #{inAccountId,jdbcType=VARCHAR}, 
+      #{outAccountId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{money,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{otherMoney,jdbcType=DECIMAL}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.TransferRecord">
+    <!--@mbg.generated-->
+    insert into transfer_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="inAccountId != null">
+        in_account_id,
+      </if>
+      <if test="outAccountId != null">
+        out_account_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+        create_time,
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="otherMoney != null">
+        other_money,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="inAccountId != null">
+        #{inAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="outAccountId != null">
+        #{outAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+        now(),
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMoney != null">
+        #{otherMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.TransferRecord">
+    <!--@mbg.generated-->
+    update transfer_record
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="inAccountId != null">
+        in_account_id = #{inAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="outAccountId != null">
+        out_account_id = #{outAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMoney != null">
+        other_money = #{otherMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.TransferRecord">
+    <!--@mbg.generated-->
+    update transfer_record
+    set uuid = #{uuid,jdbcType=VARCHAR},
+      in_account_id = #{inAccountId,jdbcType=VARCHAR},
+      out_account_id = #{outAccountId,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      other_money = #{otherMoney,jdbcType=DECIMAL},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByConditions" resultMap="BaseResultMap">
+    select * from transfer_record
+    where 1 = 1
+    <if test="null != month and '' != month">
+      and DATE_FORMAT(create_time, '%Y%m') = #{month}
+    </if>
+    <if test="null != card and '' != card and '' == inOrOut">
+      and (in_account_id = #{card} or out_account_id = #{card})
+    </if>
+    <if test="inOrOut =='0'.toString() ">
+      and in_account_id = #{card}
+    </if>
+    <if test="inOrOut =='1'.toString() ">
+      and out_account_id = #{card}
+    </if>
+    <if test="null != type and ''!= type">
+      and type = #{type}
+    </if>
+    <if test="null != startTime">
+      and #{startTime} &lt;= create_time
+    </if>
+    <if test="null != endTime">
+      and #{endTime} &gt;= create_time
+    </if>
+    order by create_time desc
+  </select>
+
+  <select id="getDailyRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from transfer_record where Date(create_time) = #{now,jdbcType=TIMESTAMP} and out_account_id = #{outAccountId,jdbcType=VARCHAR}
+  </select>
+</mapper>

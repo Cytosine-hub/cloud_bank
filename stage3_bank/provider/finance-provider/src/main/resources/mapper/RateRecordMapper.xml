@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.financeProvider.mapper.RateRecordMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.RateRecord">
+    <!--@mbg.generated-->
+    <!--@Table rate_record-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="finance_id" jdbcType="VARCHAR" property="financeId" />
+    <result column="rate" jdbcType="DOUBLE" property="rate" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, finance_id, rate, `time`, remark1, remark2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from rate_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByFIId" resultMap="BaseResultMap">
+    select * from rate_record where finance_id = #{fiId} and Date(time) = #{todayDate}
+  </select>
+
+  <select id="selectRateRecordByFiId" resultMap="BaseResultMap">
+    SELECT * FROM rate_record  WHERE finance_id=#{fiId} ORDER BY time LIMIT 0,7
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from rate_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.RateRecord">
+    <!--@mbg.generated-->
+    insert into rate_record (id, finance_id, rate, 
+      `time`, remark1, remark2
+      )
+    values (#{id,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, #{rate,jdbcType=DOUBLE}, 
+      #{time,jdbcType=TIMESTAMP}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.RateRecord">
+    <!--@mbg.generated-->
+    insert into rate_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="financeId != null">
+        finance_id,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.RateRecord">
+    <!--@mbg.generated-->
+    update rate_record
+    <set>
+      <if test="financeId != null">
+        finance_id = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.RateRecord">
+    <!--@mbg.generated-->
+    update rate_record
+    set finance_id = #{financeId,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=DOUBLE},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

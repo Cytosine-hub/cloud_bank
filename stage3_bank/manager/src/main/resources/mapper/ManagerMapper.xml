@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.manager.mapper.ManagerMapper">
+    <resultMap id="BaseResultMap" type="com.i2f.train.manager.model.Manager">
+        <!--@mbg.generated-->
+        <!--@Table manager-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="remark1" jdbcType="VARCHAR" property="remark1"/>
+        <result column="remark2" jdbcType="VARCHAR" property="remark2"/>
+    </resultMap>
+
+    <resultMap id="DtoResultMap" type="com.i2f.train.manager.model.dto.ManagerDto">
+        <!--@mbg.generated-->
+        <!--@Table manager-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, mobile_phone, `level`, `password`, remark1, remark2
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from manager
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete
+        from manager
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.i2f.train.manager.model.Manager">
+        <!--@mbg.generated-->
+        insert into manager (id, `name`, mobile_phone,
+                             `level`, `password`, remark1,
+                             remark2)
+        values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=INTEGER},
+                #{level,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR},
+                #{remark2,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.i2f.train.manager.model.Manager">
+        <!--@mbg.generated-->
+        insert into manager
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone,
+            </if>
+            <if test="level != null">
+                `level`,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="remark1 != null">
+                remark1,
+            </if>
+            <if test="remark2 != null">
+                remark2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                #{mobilePhone,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                #{remark1,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                #{remark2,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.manager.model.Manager">
+        <!--@mbg.generated-->
+        update manager
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+            </if>
+            <if test="level != null">
+                `level` = #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="remark1 != null">
+                remark1 = #{remark1,jdbcType=VARCHAR},
+            </if>
+            <if test="remark2 != null">
+                remark2 = #{remark2,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.i2f.train.manager.model.Manager">
+        <!--@mbg.generated-->
+        update manager
+        set `name`       = #{name,jdbcType=VARCHAR},
+            mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+            `level`      = #{level,jdbcType=VARCHAR},
+            `password`   = #{password,jdbcType=VARCHAR},
+            remark1      = #{remark1,jdbcType=VARCHAR},
+            remark2      = #{remark2,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findByPhone" resultMap="BaseResultMap">
+        select *
+        from manager
+        where mobile_phone = #{mobilePhone}
+          and is_delete = 0
+    </select>
+
+    <update id="updateLevelById">
+        update manager
+        set `level` = #{param1}
+        where id = #{param2}
+    </update>
+
+    <select id="queryManagers" parameterType="java.lang.String" resultMap="DtoResultMap">
+        select id, `name`, mobile_phone, `level`
+        from manager
+        <where>
+            <if test="level != null and level != ''">
+                `level` = #{level}
+                  and
+            </if>
+            <if test="name != null and name != ''">
+                `name` like CONCAT('%',#{name},'%')
+                  and
+            </if>
+            is_delete = 0
+        </where>
+    </select>
+</mapper>

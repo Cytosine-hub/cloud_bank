@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.userProvider.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.User">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="lock_time" jdbcType="TIMESTAMP" property="lockTime" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="personal_id" jdbcType="VARCHAR" property="personalId" />
+    <result column="pay_password" jdbcType="VARCHAR" property="payPassword"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="image_id" jdbcType="VARCHAR" property="imageId" />
+    <result column="skin_id" jdbcType="VARCHAR" property="skinId" />
+    <result column="is_deleted" jdbcType="VARCHAR" property="isDeleted" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+    <result column="remark3" jdbcType="VARCHAR" property="remark3" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, phone, `password`, `name`, sex, `status`, lock_time, integral, sign_time, account_id, 
+    personal_id, pay_password,create_time, image_id, skin_id, is_deleted, remark1, remark2, remark3,
+    email
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `user`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from `user`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.User">
+    <!--@mbg.generated-->
+    insert into `user` (id, phone, `password`, 
+      `name`, sex, `status`, 
+      lock_time, integral, sign_time, 
+      account_id, personal_id, create_time, 
+      image_id, skin_id, is_deleted, 
+      remark1, remark2, remark3, 
+      email)
+    values (#{id,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{lockTime,jdbcType=TIMESTAMP}, #{integral,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}, 
+      #{accountId,jdbcType=VARCHAR}, #{personalId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{imageId,jdbcType=VARCHAR}, #{skinId,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.User">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="lockTime != null">
+        lock_time,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="signTime != null">
+        sign_time,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="personalId != null">
+        personal_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="imageId != null">
+        image_id,
+      </if>
+      <if test="skinId != null">
+        skin_id,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+      <if test="remark3 != null">
+        remark3,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null">
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="personalId != null">
+        #{personalId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageId != null">
+        #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="skinId != null">
+        #{skinId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.User">
+    <!--@mbg.generated-->
+    update `user`
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null">
+        lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null">
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="personalId != null">
+        personal_id = #{personalId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageId != null">
+        image_id = #{imageId,jdbcType=VARCHAR},
+      </if>
+      <if test="skinId != null">
+        skin_id = #{skinId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null">
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id= #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.User">
+    <!--@mbg.generated-->
+    update `user`
+    set phone = #{phone,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR},
+      lock_time = #{lockTime,jdbcType=TIMESTAMP},
+      integral = #{integral,jdbcType=INTEGER},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      pay_password=#{payPassword,jdbcType=VARCHAR},
+      personal_id = #{personalId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      image_id = #{imageId,jdbcType=VARCHAR},
+      skin_id = #{skinId,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByUserId">
+     update user set name=#{username},account_id=#{accountId},personal_id=#{personalId},pay_password=#{payPassword},create_time=NOW()
+        where id=#{userId}
+  </update>
+
+  <select id="findByPhone" resultMap="BaseResultMap">
+        select * from user where phone=#{mobilePhone}
+    </select>
+  <update id="upPassword">
+        update user set password =#{password} where id=#{userId}
+    </update>
+  <update id="upPayPassword">
+        update user set pay_password =#{payPassword} where id=#{userId}
+    </update>
+
+  <delete id="deleteUserAccountRelation">
+        delete from user_account_relation where user_id = #{userId}
+    </delete>
+  <delete id="deleteAllUserFriend">
+        delete from user_friends where user_id = #{userId}
+    </delete>
+</mapper>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.financeProvider.mapper.FinanceHoldMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.FinanceHold">
+    <!--@mbg.generated-->
+    <!--@Table finance_hold-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="finance_id" jdbcType="VARCHAR" property="financeId" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="time" jdbcType="DATE" property="time" />
+    <result column="profit" jdbcType="VARCHAR" property="profit" />
+    <result column="total_profit" jdbcType="VARCHAR" property="totalProfit" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_id, finance_id, money, `time`, profit, total_profit,amount,status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from finance_hold
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+<!--  根据用户id查基金持有表-->
+    <select id="selectFinanceHoldByUserId"  resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from finance_hold
+      where user_id = #{userId,jdbcType=VARCHAR} and status='1'
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from finance_hold
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.FinanceHold">
+    <!--@mbg.generated-->
+    insert into finance_hold (id, user_id, finance_id, 
+      money, `time`, profit, total_profit,amount
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{financeId,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{time,jdbcType=DATE}, #{profit,jdbcType=VARCHAR}, #{totalProfit,jdbcType=VARCHAR},#{amount,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.FinanceHold">
+    <!--@mbg.generated-->
+    insert into finance_hold
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="financeId != null">
+        finance_id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="totalProfit != null">
+        total_profit,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalProfit != null">
+        #{totalProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.FinanceHold">
+    <!--@mbg.generated-->
+    update finance_hold
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null">
+        finance_id = #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=DATE},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=VARCHAR},
+      </if>
+      <if test="totalProfit != null">
+        total_profit = #{totalProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+       amount= #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status= #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.FinanceHold">
+    <!--@mbg.generated-->
+    update finance_hold
+    set user_id = #{userId,jdbcType=VARCHAR},
+      finance_id = #{financeId,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=DATE},
+      profit = #{profit,jdbcType=VARCHAR},
+      total_profit = #{totalProfit,jdbcType=VARCHAR},
+    amount = #{amount,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectFinanceHOldByIdAndFiId" resultMap="BaseResultMap">
+    select * from finance_hold where user_id = #{userId} and finance_id = #{financeId}
+  </select>
+  <select id="selectAllHold" resultMap="BaseResultMap">
+    select * from finance_hold
+  </select>
+  <select id="selectHoldByUserId" resultMap="BaseResultMap">
+    select * from  finance_hold where user_id=#{param1} and finance_id=#{param2};
+  </select>
+  <select id="selectHoldByStatus" resultMap="BaseResultMap">
+    select * from finance_hold where status = '1'
+  </select>
+
+    <select id="selectSteadyFinanceHoldMoney" resultType="java.lang.String">
+      select sum(money) from finance_hold where user_id=#{userId} and finance_id in
+      (select id from finance_item where level='1') and status='1'
+    </select>
+  <select id="selectAggressiveFinanceHoldMoney" resultType="java.lang.String">
+     select sum(money) from finance_hold where user_id=#{userId} and finance_id in
+      (select id from finance_item where level='2') and status='1'
+  </select>
+  <select id="selectFinanceHoldProfit" resultType="java.lang.String">
+    select sum(profit) from finance_hold where user_id=#{userId} and status='1'
+  </select>
+  <select id="selectFinanceHoldTotalProfit" resultType="java.lang.String">
+    select sum(total_profit) from finance_hold where user_id=#{userId} and status='1'
+  </select>
+
+</mapper>

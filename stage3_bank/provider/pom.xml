@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.i2f.train</groupId>
+		<artifactId>stage3-bank</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>provider</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>provider</name>
+	<description>provider</description>
+	<packaging>pom</packaging>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<modules>
+		<module>code-provider</module>
+		<module>user-provider</module>
+		<module>finance-provider</module>
+		<module>account-provider</module>
+		<module>production-provider</module>
+	</modules>
+
+	<dependencies>
+		<!--微服务启动公共依赖-->
+		<dependency>
+			<groupId>com.i2f.train</groupId>
+			<artifactId>starter</artifactId>
+		</dependency>
+
+<!--		lombok依赖-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

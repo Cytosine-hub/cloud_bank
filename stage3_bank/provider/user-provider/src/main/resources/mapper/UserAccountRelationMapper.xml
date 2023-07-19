@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.i2f.train.userProvider.mapper.UserAccountRelationMapper">
+  <resultMap id="BaseResultMap" type="com.i2f.train.starter.model.UserAccountRelation">
+    <!--@mbg.generated-->
+    <!--@Table user_account_relation-->
+    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_main" jdbcType="VARCHAR" property="isMain" />
+    <result column="remark1" jdbcType="VARCHAR" property="remark1" />
+    <result column="remark2" jdbcType="VARCHAR" property="remark2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    account_id, user_id, create_time, is_main, remark1, remark2
+  </sql>
+
+    <select id="selectByAnyField" parameterType="com.i2f.train.starter.model.UserAccountRelation" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_account_relation where
+        <if test="accountId != null">
+            <if test="accountId != ''">
+                account_id = #{accountId,jdbcType=VARCHAR} and
+            </if>
+        </if>
+        <if test="userId != null">
+            <if test="userId != ''">
+                user_id = #{userId,jdbcType=VARCHAR} and
+            </if>
+        </if>
+        <if test="createTime != null">
+            <if test="createTime != ''">
+                create_time = #{createTime,jdbcType=TIMESTAMP} and
+            </if>
+        </if>
+        <if test="isMain != null">
+            <if test="isMain != ''">
+                is_main = #{isMain,jdbcType=VARCHAR} and
+            </if>
+        </if>
+        <if test="remark1 != null">
+            <if test="remark1 != ''">
+                remark1 = #{remark1,jdbcType=VARCHAR} and
+            </if>
+        </if>
+        <if test="remark2 != null">
+            <if test="remark2 != ''">
+                remark2 = #{remark2,jdbcType=VARCHAR} and
+            </if>
+        </if>
+        '1' = '1'
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_account_relation
+        where account_id = #{accountId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from user_account_relation
+    where account_id = #{accountId,jdbcType=VARCHAR} and user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+        <!--@mbg.generated-->
+        delete from user_account_relation
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+  <insert id="insert" parameterType="com.i2f.train.starter.model.UserAccountRelation">
+    <!--@mbg.generated-->
+    insert into user_account_relation (account_id, user_id, create_time,
+      is_main, remark1, remark2
+      )
+    values (#{accountId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{isMain,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.i2f.train.starter.model.UserAccountRelation">
+    <!--@mbg.generated-->
+    insert into user_account_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+        create_time,
+      <if test="isMain != null">
+        is_main,
+      </if>
+      <if test="remark1 != null">
+        remark1,
+      </if>
+      <if test="remark2 != null">
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      now(),
+      <if test="isMain != null">
+        #{isMain,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.i2f.train.starter.model.UserAccountRelation">
+    <!--@mbg.generated-->
+    update user_account_relation
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMain != null">
+        is_main = #{isMain,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null">
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null">
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.i2f.train.starter.model.UserAccountRelation">
+    <!--@mbg.generated-->
+    update user_account_relation
+    set user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_main = #{isMain,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAccountByUserId" resultMap="BaseResultMap">
+    select * from user_account_relation where user_id = #{userId}
+  </select>
+    <select id="selectByAccountAndId" resultMap="BaseResultMap">
+        select * from user_account_relation where user_id = #{userId} and account_id = #{accountId}
+    </select>
+
+
+</mapper>
